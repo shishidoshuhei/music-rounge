@@ -1,0 +1,11 @@
+<h1><%= @user.name %>さんのページ</h1>
+
+<h3>投稿一覧</h3>
+<% @posts.each do |post| %>
+  <%= link_to post.title, post_path(post.id) %>
+  作成日時<%= post.created_at %>更新日時<%= post.updated_at %>
+  <% if post.user == current_user %>
+    <%= link_to "編集", edit_post_path(post.id) %>
+    <%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <% end %><br/>
+<% end %>

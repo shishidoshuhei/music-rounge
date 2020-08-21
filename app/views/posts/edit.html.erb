@@ -1,0 +1,9 @@
+<h2>編集ページ</h2>
+
+<%= form_for @post do |f| %>
+  <p>title</p>
+  <%= f.text_field :title %>
+  <p>body</p>
+  <%= f.text_area :body %>
+  <%= f.submit "編集完了" %>
+<% end %>

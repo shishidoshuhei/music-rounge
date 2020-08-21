@@ -1,0 +1,44 @@
+    <header id="header", class="header">
+      <!-- ログイン時のヘッダー -->
+      <% if user_signed_in? %>
+        <nav class="nav">
+          <div class="container">
+            <div class="nav-bar">
+              <ul class="nav-items">
+                <li>
+                  <h1><%= link_to "MusicRounge", posts_path %></h1>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "マイページ", user_path(current_user.id), class: "nav-link btn btn-primary" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規投稿", new_post_path, class: "nav-link btn btn-primary" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link btn btn-primary" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- ログインしていない時のヘッダー-->
+        <% else %>
+          <nav class="nav">
+          <div class="container">
+            <div class="nav-bar">
+              <ul class="nav-items">
+                <li>
+                  <%= link_to "MusicRounge", posts_path %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link btn btn-primary" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-primary" %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      <% end %>
+    </header>

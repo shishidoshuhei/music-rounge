@@ -1,0 +1,45 @@
+ul {
+	margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+li {
+	list-style: none;
+}
+
+.header {
+  height: 100px;
+  width: 100%;
+  background-color: #FAFAD2;
+  margin-bottom: 30px;
+}
+
+
+.nav {
+  &-logo {
+	color: #000;
+	font-size: 30px;
+  }
+  &-items {
+	height: 100px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	& > :first-child {
+		margin-right: auto;
+	}
+  }
+  &-item {
+	margin-right: 20px;
+	&:last-child {
+		margin-right: 0;
+	}
+  }
+}

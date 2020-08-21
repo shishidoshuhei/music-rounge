@@ -1,0 +1,10 @@
+<h1>投稿一覧</h1>
+
+<% @posts.each do |post| %>
+  <p>作成日時<%= post.created_at %>更新日時<%= post.updated_at %></p>
+
+  題名<%= link_to post.title, post_path(post.id) %>
+  <%= link_to "#{post.comments.count} コメント", post_path(post.id) %>
+<% end %>
+<br/>
+<%= paginate @posts %>
