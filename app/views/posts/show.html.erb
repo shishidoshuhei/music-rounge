@@ -5,8 +5,12 @@
 <p><%= link_to @post.user.name, user_path(@post.user) %></p>
 
 <%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :comment, placeholder: "コメントをここに" %>
+  <%= f.text_area :body, placeholder: "コメントをここに" %>
   <%= f.submit "コメントを送信する" %>
+<% end %>
+
+<% @comments.each do |comment| %>
+  <p><%= comment.body %></p>
 <% end %>
 
 <%= link_to "戻る", posts_path %>
