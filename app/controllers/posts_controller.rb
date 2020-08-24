@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.page(params[:page]).reverse_order
+    @search = @posts.ransack(params[:q])
+    if params[:q].present?
+      @posts = @search.result
+    end
   end
 
   def create
