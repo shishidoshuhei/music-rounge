@@ -1,15 +1,38 @@
 <h2><%= @post.title %></h2>
 
-<p><%= @post.body %></p>
+<% if @post.favorited_by?(current_user) %>
+    <li>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+        <%= @post.favorites.count %> いいね
+      <% end %>
+    </li>
+    <% else %>
+    <li>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
+        <% if @post.favorites.count >= 1 %>
+        <%= @post.favorites.count %> いいね
+        <% else %>
+        <p>いいねする</p>
+        <% end %>
+      <% end %>
+    </li>
+    <% end %>
 
-<p><%= link_to @post.user.name, user_path(@post.user) %></p>
+<p>投稿者：<%= link_to @post.user.name, user_path(@post.user) %></p>
+
+<p><%= @post.body %></p>
 
 <%= form_for [@post, @comment] do |f| %>
   <%= f.text_area :body, placeholder: "コメントをここに" %>
   <%= f.submit "コメントを送信する" %>
 <% end %>
 
+
+
 <% @comments.each do |comment| %>
+  <P><%= comment.user.name %></P>
   <p><%= comment.body %></p>
 <% end %>
 
