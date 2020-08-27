@@ -5,3 +5,38 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Tag.create([{
+	name: '邦楽'
+},{
+	name: '洋楽'
+},{
+	name: 'ワールドミュージック'
+},{
+	name: 'クラシック'
+},{
+	name: 'ブルース'
+},{
+	name: 'ジャズ'
+},{
+	name: 'フォークソング'
+},{
+	name: 'カントリー'
+},{
+	name: 'ソウル'
+},{
+	name: 'リズム&ブルース'
+},{
+	name: 'ロック'
+},{
+	name: 'パンク'
+},{
+	name: 'ヘヴィメタル'
+},{
+	name: 'ポップス'
+},{
+	name: 'ファンク'
+},{
+	name: 'ヒップホップ'
+},{
+	name: 'その他'
+}])

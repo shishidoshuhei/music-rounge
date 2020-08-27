@@ -1,13 +1,18 @@
 <h1>投稿一覧</h1>
 
-<% @posts.each do |post| %>
-  <h3>題名<%= link_to post.title, post_path(post.id) %></h3>
-  <p>投稿者<%= post.user.name %></p>
-  <p>作成日時<%= post.created_at %>更新日時<%= post.updated_at %></p>
+<div class="main-contents">
+    <% @posts.each do |post| %>
+      <%= link_to post.title, post_path(post.id) %>
+      <!-- ポスト→ポストタグで探索して、タグを探し出す。複数あるので、each文で取り出す。-->
+      <% post.post_tags.each do |ptag| %>
+        <%= link_to ptag.tag.name, tag_path(ptag.tag.id) %>
+      <% end %>
+      <p>投稿者<%= post.user.name %></p>
+      <p>作成日時<%= post.created_at %>更新日時<%= post.updated_at %></p>
 
-  <%= link_to "#{post.comments.count} コメント", post_path(post.id) %>
+      <%= link_to "#{post.comments.count} コメント", post_path(post.id) %>
 
-  <%= post.favorites.count %>いいね
-<% end %>
-<br/>
-<%= paginate @posts %>
+      <%= post.favorites.count %>いいね<br/>
+    <% end %>
+  <%= paginate @posts %>
+</div>

@@ -1,9 +1,12 @@
-<%= form_for(@post) do |f| %>
+<%= form_with(model: @post) do |f| %>
   <%= f.label :title,"タイトル" %><br />
   <%= f.text_field :title %><br/>
 
   <%= f.label :body,"本文" %><br />
-  <%= f.text_area :body %>
+  <%= f.text_area :body %><br />
+
+  <%= f.label :tags,"タグ" %><br />
+  <%= f.collection_check_boxes :tags, @tags, :id, :name, include_hidden: false %><br/>
 
   <%= f.submit "作成" %>
 

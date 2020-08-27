@@ -4,24 +4,38 @@ class PostsController < ApplicationController
     @search = @posts.ransack(params[:q])
     if params[:q].present?
       @posts = @search.result
+      # Tag.find(PostTag.find_by(post_id: 54).tag_id).name  post_idからposttagsを検索して、そこから関連づいているtagのnameを取得している。
     end
   end
 
   def create
     post = Post.new(post_params)
     post.user_id = current_user.id
-    post.save
-  	redirect_to posts_path
+    if post.save!
+      unless params[:post][:tags].present?
+        redirect_to posts_path
+      end
+      params[:post][:tags].each do |tag|
+        post_tag = PostTag.new
+        post_tag.post_id = post.id
+        post_tag.tag_id = tag.to_i
+        if post_tag.save!
+        end
+      end
+      redirect_to posts_path
+    end
   end
 
   def show
   	@post = Post.find(params[:id])
     @comment = Comment.new
     @comments = @post.comments
+    @tag = @post.tags
   end
 
   def new
     @post = Post.new
+    @tags = Tag.all
   end
 
   def edit
@@ -43,6 +57,6 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, tags: [])
     end
 end
