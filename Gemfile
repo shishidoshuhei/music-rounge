@@ -66,7 +66,17 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追加した分
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'kaminari','~> 1.2.1'
 gem 'ransack'
+
+# デプロイ用
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
