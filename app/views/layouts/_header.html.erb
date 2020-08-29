@@ -9,6 +9,9 @@
                   <h1><%= link_to "MusicRounge", posts_path %></h1>
                 </li>
                 <li class="nav-item">
+                  <%= link_to "about", home_about_path, class: "nav-link btn btn-primary" %>
+                </li>
+                <li class="nav-item">
                   <%= link_to "マイページ", user_path(current_user.id), class: "nav-link btn btn-primary" %>
                 </li>
                 <li class="nav-item">
@@ -35,6 +38,9 @@
               <ul class="nav-items">
                 <li>
                   <h1><%= link_to "MusicRounge", posts_path %></h1>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "about", home_about_path, class: "nav-link btn btn-primary" %>
                 </li>
                 <li class="nav-item">
                   <%= link_to "新規登録", new_user_registration_path, class: "nav-link btn btn-primary" %>
