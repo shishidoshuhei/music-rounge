@@ -1,40 +1,58 @@
-<h2><%= @post.title %></h2>
-
-<% if @post.favorited_by?(current_user) %>
-    <li>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-        <%= @post.favorites.count %> いいね
-      <% end %>
-    </li>
-    <% else %>
-    <li>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
-        <% if @post.favorites.count >= 1 %>
-        <%= @post.favorites.count %> いいね
+  <div class="block-contents">
+  <div class="block-head">
+    <div class="block-date">
+      <p><%= @post.created_at %><%= @post.updated_at %></p>
+    </div>
+    <div class="block-tags">
+      <p class="tag"><投稿のタグ></p>
+    </div>
+    <div class="block-fav">
+      <% if @post.favorited_by?(current_user) %>
+        <li>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= @post.favorites.count %><br/> いいねを取り消す
+          <% end %>
+        </li>
         <% else %>
-        <p>いいねする</p>
+          <li>
+            <%= link_to post_favorites_path(@post), method: :post do %>
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              <% if @post.favorites.count >= 1 %>
+              <%= @post.favorites.count %><br/> いいねする
+        <% else %>
+          <p>いいねする</p>
         <% end %>
       <% end %>
-    </li>
+          </li>
+      <% end %>
+    </div>
+    <h1 class="block-title"><%= @post.title %></h1>
+  <div class="block-user">
+    <p>by：<%= link_to @post.user.name, user_path(@post.user) %></p>
+  </div>
+</div>
+
+<div class="block-body">
+  <p><%= @post.body %></p>
+</div>
+
+<div class="block-comments">
+  <div class="block-comment-post">
+    <%= form_for [@post, @comment] do |f| %>
+      <%= f.text_area :body, placeholder: "コメントをここに" %>
+      <%= f.submit "コメントを送信する" %>
     <% end %>
+  </div>
 
-<p>投稿者：<%= link_to @post.user.name, user_path(@post.user) %></p>
-
-<p><%= @post.body %></p>
-
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :body, placeholder: "コメントをここに" %>
-  <%= f.submit "コメントを送信する" %>
-<% end %>
-
-
-
-<% @comments.each do |comment| %>
-  <P><%= comment.user.name %></P>
-  <p><%= comment.body %></p>
-<% end %>
+  <div class="block-comment-index">
+    <% @comments.each do |comment| %>
+      <span class="comment-user-name"><%= comment.user.name %></span>
+      <span class="date"><%= comment.created_at%><%= comment.updated_at%></span>
+      <p class="comment-contents"><%= comment.body %></p>
+    <% end %>
+  </div>
+</div>
 
 <%= link_to "戻る", posts_path %>
-<p><%= @tag.inspect %></p>
+</div>

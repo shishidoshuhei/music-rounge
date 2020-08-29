@@ -1,18 +1,37 @@
-<h1>投稿一覧</h1>
+<h1 class="index-title">投稿一覧</h1>
 
-<div class="main-contents">
+<div class="index-ranking">
+  いいね数の多い投稿はこちら！→
+<!-- <%= Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id) %> -->
+<% @all_ranks.each.with_index(1) do |post, i| %>
+  第
+  <%= i %>
+  位
+
+  <span class="index-ranking-contents">
+    <%= link_to post.title, post_path(post.id) %>
+    <span>(<%= post.favorites.count %>いいね)</span>
+  </span>
+  <% end %>
+</div>
+
+
+<div class="index-contents">
     <% @posts.each do |post| %>
-      <%= link_to post.title, post_path(post.id) %>
+    <div class="index-content">
+      <h2><%= link_to post.title, post_path(post.id) %></h2>
       <!-- ポスト→ポストタグで探索して、タグを探し出す。複数あるので、each文で取り出す。-->
+      <span>タグ：</span>
       <% post.post_tags.each do |ptag| %>
-        <%= link_to ptag.tag.name, tag_path(ptag.tag.id) %>
-      <% end %>
-      <p>投稿者<%= post.user.name %></p>
-      <p>作成日時<%= post.created_at %>更新日時<%= post.updated_at %></p>
+      <span><%= link_to ptag.tag.name, tag_path(ptag.tag.id) %></span>
+      <% end %><br/>
+      <span class="index-contents-user" >by<%= link_to post.user.name, user_path(post.user.id) %></span>
+      <span class="index-contents-date">作成日時<%= post.created_at %>更新日時<%= post.updated_at %></span>
 
-      <%= link_to "#{post.comments.count} コメント", post_path(post.id) %>
+      <span class="index-contents-comments"><%= post.comments.count %>コメント</span>
 
-      <%= post.favorites.count %>いいね<br/>
+      <span class="index-contents-fav"><%= post.favorites.count %>いいね</span><br/>
+    </div>
     <% end %>
   <%= paginate @posts %>
 </div>

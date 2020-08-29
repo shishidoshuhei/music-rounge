@@ -12,3 +12,87 @@
     width: 50%;
 	text-align: center;
 }
+
+
+.block-contents {
+	width: 70%;
+	height: maximum;
+    margin: 0 auto;
+	background-color: white;
+}
+
+.block-body {
+    width: 80%;
+	border-bottom: 1px solid #8c8b8b;
+	margin: 20px auto 40px;
+}
+
+.block-fav,.block-user {
+	font-size: 12px;
+}
+
+.block-title {
+	text-align: center;
+}
+
+.block-user {
+	text-align: center;
+}
+
+.block-comments {
+    width: 80%;
+	margin: 0 auto;
+}
+
+.block-comment-post {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.comment-contents {
+	border-bottom: 1px solid #8c8b8b;
+}
+
+.comment-user-name {
+    font-size: 12px;
+	border-right: 1px solid #8c8b8b;
+	padding-right: 8px;
+}
+
+.block-comment-index {
+	margin-bottom: 20px;
+}
+
+
+
+.index-title {
+	text-align: center;
+}
+
+.index-contents {
+    width: 70%;
+	margin: 45px auto;
+}
+
+.index-content {
+	margin-bottom: 25px;
+}
+
+.index-contents-date,.index-contents-comments,.index-contents-fav {
+	border-left: 1px solid #8c8b8b;
+	padding-left: 5px;
+}
+
+.index-ranking {
+    width: 70%;
+	margin: 0 auto;
+}
+
+.index-ranking-contents {
+	margin-right: 15px;
+}
+
+
+.user-content {
+	
+}

@@ -1,5 +1,21 @@
 <h1>タグ：<%= @tag.name %>の投稿一覧</h1>
 
-<% @tag_posts.each do |tag_post| %>
-  <%= link_to tag_post.title, post_path(tag_post.id) %><br/>
-<% end %>
+
+<div class="index-contents">
+    <% @tag_posts.each do |tag_post| %>
+    <div class="index-content">
+      <h2><%= link_to tag_post.title, post_path(tag_post.id) %></h2>
+      <!-- タグに表示、each文で取り出す。-->
+      <span>タグ：</span>
+      <% tag_post.tags.each do |ptag| %>
+      <span><%= link_to ptag.name, tag_path(ptag.id) %></span>
+      <% end %><br/>
+      <span class="index-contents-user" >by<%= link_to tag_post.user.name, user_path(tag_post.user.id) %></span>
+      <span class="index-contents-date">作成日時<%= tag_post.created_at %>更新日時<%= tag_post.updated_at %></span>
+
+      <span class="index-contents-comments"><%= tag_post.comments.count %>コメント</span>
+
+      <span class="index-contents-fav"><%= tag_post.favorites.count %>いいね</span><br/>
+    </div>
+    <% end %>
+</div>

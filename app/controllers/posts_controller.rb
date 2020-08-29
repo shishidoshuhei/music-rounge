@@ -5,15 +5,17 @@ class PostsController < ApplicationController
     if params[:q].present?
       @posts = @search.result
       # Tag.find(PostTag.find_by(post_id: 54).tag_id).name  post_idからposttagsを検索して、そこから関連づいているtagのnameを取得している。
+      # ランキング表示のための記述
     end
+    @all_ranks = Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
   def create
-    post = Post.new(post_params)
+    post = Post.new(title: post_params[:title], body: post_params[:body])
     post.user_id = current_user.id
-    if post.save!
+    if post.save
       unless params[:post][:tags].present?
-        redirect_to posts_path
+        return redirect_to posts_path
       end
       params[:post][:tags].each do |tag|
         post_tag = PostTag.new
@@ -43,8 +45,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(patams[:id])
-    post.update(post.params)
+    post = Post.find(params[:id])
+    post.update(post_params)
     redirect_to post_path(post.id)
   end
 

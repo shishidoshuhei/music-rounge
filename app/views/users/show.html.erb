@@ -4,12 +4,18 @@
   <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
 <% end %>
 
-<h3>投稿一覧</h3>
+<h2 class="index-title">投稿一覧</h2>
+<div class="index-contents">
 <% @posts.each do |post| %>
-  <%= link_to post.title, post_path(post.id) %>
-  作成日時<%= post.created_at %>更新日時<%= post.updated_at %>
+<div class="user-content">
+  <h4><%= link_to post.title, post_path(post.id) %></h4>
+  <span>作成日時<%= post.created_at %>更新日時<%= post.updated_at %></span>
+  <span class="index-contents-comments"><%= post.comments.count %>コメント</span>
+  <span class="index-contents-fav"><%= post.favorites.count %>いいね</span><br/>
   <% if post.user == current_user %>
     <%= link_to "編集", edit_post_path(post.id) %>
     <%= link_to "削除", post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+</div>
   <% end %><br/>
 <% end %>
+<div class="index-contents">
