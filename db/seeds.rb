@@ -39,7 +39,7 @@ Tag.create([{
 	name: 'ヒップホップ'
 },{
 	name: 'レゲエ'
-}{
+},{
 	name: 'スカ'
 },{
 	name: '演歌'
