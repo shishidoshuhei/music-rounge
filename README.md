@@ -19,7 +19,3 @@
 関連するアーティストの他の曲を探したいとき
 
 ## 設計書
-
-
-### 機能一覧
-https://docs.google.com/spreadsheets/d/1NRB8To2pgi-upaQyy3R0t6vFHXysxPP4LeOKeuyeWuM/edit#gid=0
